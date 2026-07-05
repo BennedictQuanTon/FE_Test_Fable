@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { BrainCircuit, Orbit, SlidersHorizontal } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { RadialGlowButton } from "@/components/ui/RadialGlowButton";
 import { TransparentHand } from "@/components/ui/TransparentHand";
+import NumberFlow from "@number-flow/react";
+import { stats } from "@/data/content";
 
 const ICONS = {
   brain: BrainCircuit,
@@ -53,6 +55,67 @@ const OVERVIEW_CARDS = [
   },
 ];
 
+function StatItem({
+  stat,
+  index,
+}: {
+  stat: any;
+  index: number;
+}) {
+  const [value, setValue] = useState(0);
+
+  return (
+    <motion.div
+      onViewportEnter={() => {
+        if (stat.value !== undefined) {
+          setValue(stat.value);
+        }
+      }}
+      onViewportLeave={() => setValue(0)}
+      viewport={{ margin: "-60px" }}
+      className="flex flex-col items-center text-center h-full"
+    >
+      <Reveal delay={index * 0.1} className="h-full flex flex-col justify-start w-full">
+        {/* Main Number/Text Container - aligned baseline */}
+        <div className="min-h-[5.5rem] sm:min-h-[6.5rem] flex items-end justify-center font-display text-6xl font-black tracking-tighter text-gold sm:text-7xl">
+          {stat.customText ? (
+            <span className="relative -top-[4px]">{stat.customText}</span>
+          ) : (
+            <NumberFlow
+              value={value}
+              prefix={stat.prefix || ""}
+              suffix={stat.suffix || ""}
+              format={{
+                minimumFractionDigits: stat.decimals || 0,
+                maximumFractionDigits: stat.decimals || 0,
+              }}
+              transformTiming={{ duration: 1200, easing: "ease-out" }}
+            />
+          )}
+        </div>
+
+        {/* Subtitle Container - min-height to keep labels aligned */}
+        <div className="min-h-[4.5rem] sm:min-h-[5.5rem] mt-2 flex items-center justify-center">
+          {stat.subtitle ? (
+            <span className="text-2xl font-extrabold text-gold sm:text-3xl text-center leading-tight max-w-[240px] block">
+              {stat.subtitle}
+            </span>
+          ) : (
+            <span className="invisible text-2xl font-extrabold sm:text-3xl block">&nbsp;</span>
+          )}
+        </div>
+
+        {/* Label Container */}
+        <div className="mt-2">
+          <p className="text-slate-deep/80 dark:text-white/80 font-black mx-auto max-w-[280px] text-xl sm:text-2xl leading-snug">
+            {stat.label}
+          </p>
+        </div>
+      </Reveal>
+    </motion.div>
+  );
+}
+
 export function ProductOverview() {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -82,7 +145,7 @@ export function ProductOverview() {
         className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+              "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -106,6 +169,13 @@ export function ProductOverview() {
 
         {/* Thin horizontal line separator */}
         <div className="border-t border-slate-deep/10 dark:border-white/10 mt-6 mb-14 w-full" />
+
+        {/* STATS BAND */}
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 w-full mb-20 relative z-10 border-b border-slate-deep/10 dark:border-white/10 pb-16">
+          {stats.map((stat, i) => (
+            <StatItem key={stat.label} stat={stat} index={i} />
+          ))}
+        </div>
 
         <div className="grid gap-6 md:grid-cols-3">
           {OVERVIEW_CARDS.map((card, i) => {

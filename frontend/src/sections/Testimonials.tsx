@@ -79,29 +79,29 @@ export function Testimonials() {
         >
           {testimonials.map((t) => (
             <SwiperSlide key={t.name}>
-              <div className="card-surface flex h-full min-h-[300px] flex-col rounded-3xl p-7 shadow-lg">
-                <div className="mb-4 flex gap-1">
+              <div className="card-surface flex h-full min-h-[340px] flex-col rounded-3xl p-8 sm:p-10 shadow-lg">
+                <div className="mb-4 flex gap-1.5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
-                      className="h-4 w-4 fill-gold text-gold"
+                      className="h-5 w-5 fill-gold text-gold"
                       strokeWidth={0}
                     />
                   ))}
                 </div>
-                <p className="text-muted flex-1 text-sm italic leading-relaxed">
+                <p className="text-muted flex-1 text-base sm:text-lg italic leading-relaxed">
                   "{t.quote}"
                 </p>
-                <div className="mt-6 flex items-center gap-3 border-t pt-5" style={{ borderColor: "var(--border)" }}>
+                <div className="mt-6 flex items-center gap-4 border-t pt-5" style={{ borderColor: "var(--border)" }}>
                   <img
                     src={t.avatar}
                     alt={t.name}
                     loading="lazy"
-                    className="h-11 w-11 rounded-full border-2 border-gold object-cover"
+                    className="h-14 w-14 rounded-full border-2 border-gold object-cover"
                   />
                   <div>
-                    <p className="text-sm font-bold">{t.name}</p>
-                    <p className="text-muted text-xs">{t.role}</p>
+                    <p className="text-base sm:text-lg font-bold">{t.name}</p>
+                    <p className="text-muted text-sm">{t.role}</p>
                   </div>
                 </div>
               </div>

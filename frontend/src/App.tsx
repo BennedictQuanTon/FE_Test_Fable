@@ -5,8 +5,6 @@ import { Hero } from "@/sections/Hero";
 import { Partners } from "@/sections/Partners";
 import { ProductOverview } from "@/sections/ProductOverview";
 import { Personas } from "@/sections/Personas";
-import { Playground } from "@/sections/Playground";
-import { Stats } from "@/sections/Stats";
 import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
@@ -20,8 +18,6 @@ export default function App() {
         <Partners />
         <ProductOverview />
         <Personas />
-        <Playground />
-        <Stats />
         <Pricing />
         <Testimonials />
         <Contact />

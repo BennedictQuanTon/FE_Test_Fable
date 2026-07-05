@@ -188,7 +188,7 @@ input[type="range"].control-slider::-moz-range-thumb {
   padding-bottom: 56px !important;
 }
 .testimonial-swiper .swiper-slide {
-  width: 380px;
+  width: 480px;
   max-width: 88vw;
   height: auto;
 }

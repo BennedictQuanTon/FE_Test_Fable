@@ -69,34 +69,17 @@ export const personas = [
 ];
 
 export const stats = [
-  { value: 666, suffix: "+", label: "Secondary & high schools in HCMC" },
-  {
-    value: 1.1,
-    suffix: "M",
-    prefix: "~",
-    decimals: 1,
-    label: "Students in our target market",
-  },
-  {
-    value: 13000,
-    prefix: "≤",
-    suffix: " đ/yr",
-    label: "Per student via institutional plan — less than a coffee",
-  },
-  {
-    value: 60,
-    prefix: "<",
-    suffix: " fps",
-    isRealtime: true,
-    label: "Real-time simulation — zero setup, instant results",
-  },
+  { value: 72, suffix: "%", subtitle: "per year", label: "cost-efficiency" },
+  { value: 120, suffix: "+", subtitle: "lab items", label: "for customization" },
+  { customText: "Student", subtitle: "Experience Focus", label: "design" },
+  { value: 99, suffix: "%", subtitle: "virtual lab", label: "safety" },
 ];
 
 export const pricingPlans = [
   {
     name: "Explorer",
     target: "Any student wanting to try before committing",
-    price: "Free",
+    price: "0 VND",
     period: "No credit card required",
     features: [
       "Access to Physics Playground (5 pre-built demo canvases)",
@@ -111,7 +94,7 @@ export const pricingPlans = [
   {
     name: "Basic",
     target: "Individual students (self-study, homework help)",
-    price: "70,000 đ",
+    price: "70,000 VND",
     period: "per month",
     features: [
       "Everything in Explorer",
@@ -127,7 +110,7 @@ export const pricingPlans = [
   {
     name: "Premium",
     target: "Serious students & individual educators",
-    price: "150,000 đ",
+    price: "150,000 VND",
     period: "per month",
     features: [
       "Everything in Basic",
@@ -144,7 +127,7 @@ export const pricingPlans = [
   {
     name: "School Package",
     target: "Schools, classes, educational institutions",
-    price: "7,500,000 đ",
+    price: "7,500,000 VND",
     period: "per semester",
     features: [
       "Everything in Premium",

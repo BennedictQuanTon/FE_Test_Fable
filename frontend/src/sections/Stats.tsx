@@ -12,30 +12,34 @@ function StatItem({
   stat,
   index,
 }: {
-  stat: (typeof stats)[number];
+  stat: any;
   index: number;
 }) {
   const [value, setValue] = useState(0);
 
   return (
     <motion.div
-      onViewportEnter={() => setValue(stat.value)}
+      onViewportEnter={() => {
+        if (stat.value !== undefined) {
+          setValue(stat.value);
+        }
+      }}
       onViewportLeave={() => setValue(0)}
       viewport={{ margin: "-60px" }}
       className="flex flex-col items-center gap-2 text-center"
     >
       <Reveal delay={index * 0.1}>
         <div className="font-display text-5xl font-black tracking-tighter text-gold sm:text-6xl">
-          {stat.isRealtime ? (
-            <span className="gold-gradient-text">Real-Time</span>
+          {stat.customText ? (
+            <span>{stat.customText}</span>
           ) : (
             <NumberFlow
               value={value}
-              prefix={stat.prefix ?? ""}
-              suffix={stat.suffix ?? ""}
+              prefix={stat.prefix || ""}
+              suffix={stat.suffix || ""}
               format={{
-                minimumFractionDigits: stat.decimals ?? 0,
-                maximumFractionDigits: stat.decimals ?? 0,
+                minimumFractionDigits: stat.decimals || 0,
+                maximumFractionDigits: stat.decimals || 0,
               }}
               transformTiming={{ duration: 1200, easing: "ease-out" }}
             />
