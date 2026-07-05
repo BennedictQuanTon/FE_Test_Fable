@@ -1,20 +1,47 @@
 import { motion } from "framer-motion";
 import { Check, Crown } from "lucide-react";
 import { pricingPlans } from "@/data/content";
-import { Reveal, SectionHeading } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="surface-soft py-24 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Pricing Plans"
-          title="A Plan for Every Learner"
-          subtitle="From a free playground to a full-school virtual lab — pick the tier that fits, upgrade any time."
-        />
+    <section id="pricing" className="relative overflow-hidden bg-cloud dark:bg-slate-ink py-24 sm:py-28 transition-colors duration-500 text-slate-deep dark:text-white">
+      {/* Aurora background */}
+      <div className="aurora-blob right-[-10%] top-[-5%] h-[400px] w-[400px] bg-gold/15 dark:bg-gold/8" />
+      <div className="aurora-blob left-[-10%] bottom-[-5%] h-[400px] w-[400px] bg-indigo-500/10 dark:bg-indigo-500/8" />
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {/* Dotted texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 relative z-10">
+        <Reveal>
+          <div className="text-left">
+            <span className="text-gold text-sm sm:text-base font-extrabold uppercase tracking-[0.22em] mb-3 block">
+              Pricing Plans
+            </span>
+            <h2 className="text-3xl sm:text-4xl tracking-tight !leading-[1.2]">
+              <span className="font-sans font-extrabold text-slate-deep dark:text-white">
+                A Plan for Every{" "}
+              </span>
+              <span className="font-display italic font-semibold text-gold">
+                Learner.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
+
+        {/* Thin horizontal line separator */}
+        <div className="border-t border-slate-deep/10 dark:border-white/10 mt-6 mb-14 w-full" />
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {pricingPlans.map((plan, i) => (
             <Reveal key={plan.name} delay={i * 0.1} className="h-full">
               <motion.div
@@ -61,7 +88,7 @@ export function Pricing() {
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">
                       <Check
-                        className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                         className="mt-0.5 h-4 w-4 shrink-0 text-gold"
                         strokeWidth={3}
                       />
                       <span
@@ -105,3 +132,5 @@ export function Pricing() {
     </section>
   );
 }
+
+export default Pricing;

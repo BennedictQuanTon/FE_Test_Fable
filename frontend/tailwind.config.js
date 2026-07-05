@@ -12,8 +12,8 @@ export default {
         },
         cloud: "#F4F5F8",
         gold: {
-          DEFAULT: "#FFC800",
-          hover: "#E6B400",
+          DEFAULT: "var(--gold)",
+          hover: "var(--gold-hover)",
         },
       },
       fontFamily: {

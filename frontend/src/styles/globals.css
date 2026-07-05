@@ -12,8 +12,10 @@
   --text-muted: #454c70;
   --card: #ffffff;
   --border: rgba(35, 39, 61, 0.1);
-  --gold: #ffc800;
-  --gold-hover: #e6b400;
+  --gold: #CEA945;
+  --gold-hover: #b89336;
+  --gold-grad-1: #CEA945;
+  --gold-grad-2: #e0be5f;
 
   color-scheme: light;
 }
@@ -25,6 +27,10 @@
   --text-muted: #b6bcda;
   --card: #2a2f4a;
   --border: rgba(255, 255, 255, 0.1);
+  --gold: #ffc800;
+  --gold-hover: #e6b400;
+  --gold-grad-1: #ffc800;
+  --gold-grad-2: #ffe580;
 
   color-scheme: dark;
 }
@@ -42,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: #ffc800;
+  background: var(--gold);
   color: #23273d;
 }
 
@@ -58,7 +64,7 @@ body {
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffc800;
+  background: var(--gold);
 }
 
 /* ---------- Surface helpers ---------- */
@@ -88,7 +94,7 @@ body {
 
 /* ---------- Gold gradient text ---------- */
 .gold-gradient-text {
-  background: linear-gradient(120deg, #ffc800 20%, #ffe580 50%, #ffc800 80%);
+  background: linear-gradient(120deg, var(--gold-grad-1) 20%, var(--gold-grad-2) 50%, var(--gold-grad-1) 80%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -151,36 +157,13 @@ body {
   will-change: transform;
 }
 
-/* ---------- View Transition theme reveal (circle-blur) ---------- */
-::view-transition-group(root) {
-  animation-timing-function: var(--expo-out);
-}
-::view-transition-new(root) {
-  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="40" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>')
-    top right / 0 no-repeat;
-  mask-origin: content-box;
-  animation: theme-reveal-scale 1s;
-  transform-origin: top right;
-}
-::view-transition-old(root),
-.dark::view-transition-old(root) {
-  animation: theme-reveal-scale 1s;
-  transform-origin: top right;
-  z-index: -1;
-}
-@keyframes theme-reveal-scale {
-  to {
-    mask-size: 350vmax;
-  }
-}
-
 /* ---------- Range input styling ---------- */
 input[type="range"].control-slider {
   @apply h-1.5 w-full cursor-pointer appearance-none rounded-full;
   background: linear-gradient(
     to right,
-    #ffc800 0%,
-    #ffc800 var(--progress, 50%),
+    var(--gold) 0%,
+    var(--gold) var(--progress, 50%),
     rgba(69, 76, 112, 0.3) var(--progress, 50%),
     rgba(69, 76, 112, 0.3) 100%
   );
@@ -214,7 +197,7 @@ input[type="range"].control-slider::-moz-range-thumb {
   opacity: 0.4;
 }
 .testimonial-swiper .swiper-pagination-bullet-active {
-  background-color: #ffc800 !important;
+  background-color: var(--gold) !important;
   opacity: 1;
 }
 

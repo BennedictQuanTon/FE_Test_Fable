@@ -1,12 +1,13 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Player } from "@lottiefiles/react-lottie-player";
-import { Sparkles, MousePointerClick } from "lucide-react";
-import { HeroSandbox } from "@/components/physics/HeroSandbox";
+import { MousePointerClick } from "lucide-react";
 import { RadialGlowButton } from "@/components/ui/RadialGlowButton";
 import { AnimatedButton } from "@/components/ui/AnimatedButton";
 import { FlipText } from "@/components/ui/FlipText";
+import { useTheme } from "@/hooks/useTheme";
+import { Physics3DModel } from "@/components/physics/Physics3DModel";
 
 export function Hero() {
+  const { isDark } = useTheme();
   const { scrollY } = useScroll();
   const blobY = useTransform(scrollY, [0, 600], [0, 140]);
   const blobY2 = useTransform(scrollY, [0, 600], [0, -100]);
@@ -20,46 +21,40 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-slate-deep pb-16 pt-28 text-white lg:pt-24"
+      className="relative flex min-h-screen items-center overflow-hidden bg-cloud dark:bg-slate-ink pb-16 pt-28 text-slate-deep dark:text-white lg:pt-24 transition-colors duration-500"
     >
       {/* Aurora background */}
       <motion.div
         style={{ y: blobY }}
-        className="aurora-blob left-[-10%] top-[-15%] h-[480px] w-[480px] bg-gold/15"
+        className="aurora-blob left-[-10%] top-[-15%] h-[480px] w-[480px] bg-gold/20 dark:bg-gold/10"
       />
       <motion.div
         style={{ y: blobY2 }}
-        className="aurora-blob bottom-[-20%] right-[-8%] h-[520px] w-[520px] bg-indigo-500/20"
+        className="aurora-blob bottom-[-15%] right-[-5%] h-[550px] w-[550px] bg-indigo-500/25 dark:bg-indigo-500/20"
       />
-      <div className="aurora-blob left-[38%] top-[45%] h-[300px] w-[300px] bg-rose-400/10" />
+      <div className="aurora-blob right-[-10%] top-[-5%] h-[450px] w-[450px] bg-gold/15 dark:bg-gold/8" />
+      <div className="aurora-blob left-[35%] top-[35%] h-[350px] w-[350px] bg-indigo-400/15 dark:bg-indigo-500/10" />
+      <div className="aurora-blob left-[38%] top-[45%] h-[300px] w-[300px] bg-rose-400/5 dark:bg-rose-400/10" />
 
       {/* Dotted texture */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px)",
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-10 lg:px-8">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-12 px-6 sm:px-10 lg:grid-cols-2 lg:gap-16 lg:px-16 xl:gap-24 2xl:px-24">
         {/* Left column */}
         <div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-gold"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            AI-Powered · Interactive · Physics
-          </motion.div>
 
-          <h1 className="display-headline text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">
+
+          <h1 className="display-headline text-6xl sm:text-7xl md:text-8xl lg:text-[5.5rem] xl:text-[6.5rem] 2xl:text-[7.5rem] !leading-[1.1] !tracking-normal text-slate-deep dark:text-white">
             <FlipText delay={0.15}>Make the</FlipText>
             <br />
-            <span className="gold-gradient-text">
+            <span className="text-gold">
               <FlipText delay={0.55}>Static Dynamic.</FlipText>
             </span>
           </h1>
@@ -68,20 +63,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-white/75"
+            className="mt-6 max-w-2xl font-sans font-normal text-xl md:text-2xl !leading-[1.7] tracking-wide text-slate-gray dark:text-white/80"
           >
-            Morphysics transforms abstract physics problems into real-time,
+            <span className="font-display italic font-bold text-[1.15em] text-slate-deep dark:text-white mr-2">Morphysics</span>transforms abstract physics problems into real-time,
             AI-generated interactive 2D simulations — instantly.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-3 max-w-xl text-sm text-white/50"
-          >
-            Input your problem as text, an image, or a document. Watch physics
-            come alive.
           </motion.p>
 
           <motion.div
@@ -96,42 +81,37 @@ export function Hero() {
               Watch the Demo
             </AnimatedButton>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.6, duration: 1 }}
-            className="mt-10 flex items-center gap-3 text-xs text-white/40"
-          >
-            <span className="flex h-2 w-2">
-              <span className="absolute h-2 w-2 animate-ping rounded-full bg-gold opacity-60" />
-              <span className="h-2 w-2 rounded-full bg-gold" />
-            </span>
-            The sandbox on the right is live — grab an object and throw it.
-          </motion.div>
         </div>
 
-        {/* Right column: sandbox + mascot */}
+        {/* Right column: 3D Spring-Mass Frame (mascot removed) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative"
+          className="relative w-full h-[400px] sm:h-[450px] lg:h-[480px]"
         >
-          <HeroSandbox />
-          {/* Mascot */}
-          <motion.div
-            className="pointer-events-none absolute -bottom-8 -left-6 z-20 h-28 w-28 sm:h-36 sm:w-36"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Player
-              autoplay
-              loop
-              src="/assets/Mascot.json"
-              style={{ height: "100%", width: "100%" }}
-            />
-          </motion.div>
+          <div className={`w-full h-full rounded-2xl border p-5 flex flex-col justify-between shadow-2xl relative overflow-hidden transition-all duration-500 group/frame ${
+            !isDark 
+              ? "bg-white/80 border-slate-deep/10 shadow-slate-deep/5" 
+              : "bg-[#1f2236]/40 border-white/5 shadow-black/40"
+          }`}>
+            {/* Subtle decorative glow in the background of the box */}
+            <div className="absolute -inset-10 rounded-2xl opacity-0 group-hover/frame:opacity-100 transition-opacity duration-700 blur-[80px] bg-[radial-gradient(circle_at_center,rgba(255,200,0,0.12)_0%,transparent_70%)] pointer-events-none -z-10" />
+
+            {/* Top Bar of the Frame (like a browser or terminal) */}
+            <div className={`flex items-center justify-between pb-3 border-b ${!isDark ? "border-slate-deep/10" : "border-white/5"}`}>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#ef4444]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
+              </div>
+            </div>
+
+            {/* 3D Model Area */}
+            <div className="flex-grow w-full relative flex items-center justify-center mt-3 overflow-hidden">
+              <Physics3DModel isLightTheme={!isDark} />
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -141,7 +121,7 @@ export function Hero() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-white/25 p-1.5">
+        <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-slate-deep/25 dark:border-white/25 p-1.5">
           <div className="h-2 w-1 rounded-full bg-gold" />
         </div>
       </motion.div>

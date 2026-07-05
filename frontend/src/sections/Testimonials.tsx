@@ -7,7 +7,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import { testimonials } from "@/data/content";
-import { SectionHeading } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Testimonials rendered inside the user's inverted-perspective coverflow
@@ -15,15 +15,40 @@ import { SectionHeading } from "@/components/ui/Reveal";
  */
 export function Testimonials() {
   return (
-    <section className="surface relative overflow-hidden py-24 sm:py-28">
-      <div className="aurora-blob right-[-8%] top-[30%] h-[360px] w-[360px] bg-gold/10" />
+    <section className="relative overflow-hidden bg-cloud dark:bg-slate-ink py-24 sm:py-28 transition-colors duration-500 text-slate-deep dark:text-white">
+      {/* Aurora background */}
+      <div className="aurora-blob right-[-10%] top-[-5%] h-[400px] w-[400px] bg-gold/15 dark:bg-gold/8" />
+      <div className="aurora-blob left-[-10%] bottom-[-5%] h-[400px] w-[400px] bg-indigo-500/10 dark:bg-indigo-500/8" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Testimonials"
-          title="Loved in the Classroom"
-          subtitle="Students, teachers, principals, and parents — here's what they say after physics finally clicked."
-        />
+      {/* Dotted texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <Reveal>
+          <div className="text-left">
+            <span className="text-gold text-sm sm:text-base font-extrabold uppercase tracking-[0.22em] mb-3 block">
+              Testimonials
+            </span>
+            <h2 className="text-3xl sm:text-4xl tracking-tight !leading-[1.2]">
+              <span className="font-sans font-extrabold text-slate-deep dark:text-white">
+                Loved in the{" "}
+              </span>
+              <span className="font-display italic font-semibold text-gold">
+                Classroom.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
+
+        {/* Thin horizontal line separator */}
+        <div className="border-t border-slate-deep/10 dark:border-white/10 mt-6 mb-14 w-full" />
       </div>
 
       <motion.div
@@ -87,3 +112,5 @@ export function Testimonials() {
     </section>
   );
 }
+
+export default Testimonials;

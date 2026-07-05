@@ -1,20 +1,48 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { personas } from "@/data/content";
-import { Reveal, SectionHeading } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 export function Personas() {
   return (
-    <section className="surface-soft py-24 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="The Problem We Solve"
-          title="Physics the Way It Should Be Learned"
-          subtitle="Whether you're a student drowning in abstract theory, a teacher limited by a 45-minute period, or a school stretched by aging infrastructure — Morphysics was built for you."
-        />
+    <section className="relative overflow-hidden bg-cloud dark:bg-slate-ink py-24 sm:py-28 transition-colors duration-500 text-slate-deep dark:text-white">
+      {/* Aurora background */}
+      <div className="aurora-blob left-[-10%] top-[-10%] h-[480px] w-[480px] bg-gold/15 dark:bg-gold/8" />
+      <div className="aurora-blob bottom-[-10%] right-[-5%] h-[500px] w-[500px] bg-indigo-500/20 dark:bg-indigo-500/15" />
+      <div className="aurora-blob left-[35%] top-[25%] h-[350px] w-[350px] bg-rose-400/5 dark:bg-rose-400/10" />
 
-        <div className="mt-20 flex flex-col gap-24">
+      {/* Dotted texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 relative z-10">
+        <Reveal>
+          <div className="text-left">
+            <span className="text-gold text-sm sm:text-base font-extrabold uppercase tracking-[0.22em] mb-3 block">
+              The Problem We Solve
+            </span>
+            <h2 className="text-3xl sm:text-4xl tracking-tight !leading-[1.2]">
+              <span className="font-sans font-extrabold text-slate-deep dark:text-white">
+                Physics the Way It{" "}
+              </span>
+              <span className="font-display italic font-semibold text-gold">
+                Should Be Learned.
+              </span>
+            </h2>
+          </div>
+        </Reveal>
+
+        {/* Thin horizontal line separator */}
+        <div className="border-t border-slate-deep/10 dark:border-white/10 mt-6 mb-14 w-full" />
+
+        <div className="flex flex-col gap-24">
           {personas.map((persona, i) => (
             <div
               key={persona.headline}
@@ -105,3 +133,5 @@ export function Personas() {
     </section>
   );
 }
+
+export default Personas;

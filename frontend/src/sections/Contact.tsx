@@ -47,15 +47,40 @@ export function Contact() {
         ? "border-red-400 ring-2 ring-red-400/20"
         : "border-[color:var(--border)]",
     );
-
   return (
-    <section id="contact" className="surface-soft py-24 sm:py-28">
-      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+    <section id="contact" className="relative overflow-hidden bg-cloud dark:bg-slate-ink py-24 sm:py-28 transition-colors duration-500 text-slate-deep dark:text-white">
+      {/* Aurora background */}
+      <div className="aurora-blob right-[-10%] top-[-5%] h-[400px] w-[400px] bg-gold/15 dark:bg-gold/8" />
+      <div className="aurora-blob left-[-10%] bottom-[-5%] h-[400px] w-[400px] bg-indigo-500/10 dark:bg-indigo-500/8" />
+
+      {/* Dotted texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="mx-auto grid max-w-7xl gap-14 px-6 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12 relative z-10">
         {/* Left: info */}
         <Reveal>
-          <h2 className="display-headline text-4xl sm:text-5xl">
-            Let's Talk <span className="gold-gradient-text">Physics</span>
+          <span className="text-gold text-sm sm:text-base font-extrabold uppercase tracking-[0.22em] mb-3 block">
+            Get In Touch
+          </span>
+          <h2 className="text-4xl sm:text-5xl tracking-tight !leading-[1.2]">
+            <span className="font-sans font-extrabold text-slate-deep dark:text-white">
+              Let's Talk{" "}
+            </span>
+            <span className="font-display italic font-semibold text-gold">
+              Physics.
+            </span>
           </h2>
+
+          {/* Thin horizontal line separator */}
+          <div className="border-t border-slate-deep/10 dark:border-white/10 mt-6 mb-8 w-full" />
+
           <p className="text-muted mt-5 max-w-md leading-relaxed">
             Have questions about a plan, want to schedule a demo for your
             school, or just curious? We're happy to hear from you.

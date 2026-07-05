@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, animate, motion } from "framer-motion";
-import { Menu, X, Atom } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const NAV_ITEMS = [
-  { label: "Playground", href: "#playground" },
-  { label: "Pricing", href: "#pricing" },
   { label: "Assets", href: "#" },
   { label: "FAQ", href: "#" },
   { label: "About Us", href: "#" },
@@ -114,12 +113,17 @@ export function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="group flex items-center gap-2"
+            className="group flex items-center gap-1"
           >
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gold text-slate-deep shadow-lg shadow-gold/25 transition-transform duration-300 group-hover:rotate-180">
-              <Atom className="h-5 w-5" strokeWidth={2.4} />
-            </span>
-            <span className="font-display text-xl font-bold tracking-tight">
+            <div className="h-10 w-10 flex items-center justify-center -ml-2">
+              <Player
+                autoplay
+                loop
+                src="/assets/Mascot.json"
+                style={{ height: "42px", width: "42px" }}
+              />
+            </div>
+            <span className="font-display text-xl font-bold tracking-tight text-slate-deep dark:text-white">
               Morphysics
             </span>
           </a>

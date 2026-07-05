@@ -48,11 +48,20 @@ function StatItem({
     </motion.div>
   );
 }
-
 export function Stats() {
   return (
-    <section className="surface border-y py-20" style={{ borderColor: "var(--border)" }}>
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+    <section className="relative overflow-hidden bg-cloud dark:bg-slate-ink py-20 transition-colors duration-500 text-slate-deep dark:text-white">
+      {/* Dotted texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(var(--dot-color, rgba(35,39,61,0.08)) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-6 sm:px-8 lg:grid-cols-4 lg:px-12 relative z-10">
         {stats.map((stat, i) => (
           <StatItem key={stat.label} stat={stat} index={i} />
         ))}
